@@ -7,15 +7,15 @@ This library was written to simplify and automate Zip files management using [PH
 ### Installation
 Require this package in your composer.json and update composer. This will download the package.
 
-    composer require zanysoft/cpanel-api
+    composer require zanysoft/laravel-zip
 
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 
-    ZanySoft\Cpanel\ZipServiceProvider::class,
+    ZanySoft\Zip\ZipServiceProvider::class,
 
 You can optionally use the facade for shorter code. Add this to your facades:
 
-    'Zip' => ZanySoft\Cpanel\ZipFacade::class,
+    'Zip' => ZanySoft\Zip\ZipFacade::class,
 
 
 ## Zip usage
