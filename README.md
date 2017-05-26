@@ -1,43 +1,41 @@
-# comodojo/zip
-
-[![Build Status](https://api.travis-ci.org/comodojo/zip.png)](http://travis-ci.org/comodojo/zip) [![Latest Stable Version](https://poser.pugx.org/comodojo/zip/v/stable)](https://packagist.org/packages/comodojo/zip) [![Total Downloads](https://poser.pugx.org/comodojo/zip/downloads)](https://packagist.org/packages/comodojo/zip) [![Latest Unstable Version](https://poser.pugx.org/comodojo/zip/v/unstable)](https://packagist.org/packages/comodojo/zip) [![License](https://poser.pugx.org/comodojo/zip/license)](https://packagist.org/packages/comodojo/zip) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/comodojo/zip/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/comodojo/zip/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/comodojo/zip/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/comodojo/zip/?branch=master)
+# zanysoft/laravel-zip
 
 ZipArchive toolbox
 
 This library was written to simplify and automate Zip files management using [PHP ZipArchive](http://php.net/manual/en/class.ziparchive.php).
 
-From version 2.0.0, it supports multiple Zip files (extract, add file, remove file, merge, ...) via `\Comodojo\Zip\ZipManager` class.
+From version 2.0.0, it supports multiple Zip files (extract, add file, remove file, merge, ...) via `\ZanySoft\Zip\ZipManager` class.
 
 ## Installation
 
 Install [composer](https://getcomposer.org/), then:
 
-`` composer require comodojo/zip ``
+`` composer require zanysoft/laravel-zip ``
 
 ## Zip usage
 
-The `\Comodojo\Zip\Zip` class is made to handle a single zip file.
+The `\ZanySoft\Zip\Zip` class is made to handle a single zip file.
 
 ### Basic operations
 
 - Open zip file:
 
     ```php    
-    $zip = \Comodojo\Zip\Zip::open('file.zip');
+    $zip = \ZanySoft\Zip\Zip::open('file.zip');
 
     ```
 
 - Create zip file:
 
     ```php    
-    $zip = \Comodojo\Zip\Zip::create('file.zip');
+    $zip = \ZanySoft\Zip\Zip::create('file.zip');
 
     ```
 
 - Check zip file:
 
     ```php    
-    $is_valid = \Comodojo\Zip\Zip::check('file.zip');
+    $is_valid = \ZanySoft\Zip\Zip::check('file.zip');
 
     ```
 
@@ -154,7 +152,7 @@ The `\Comodojo\Zip\Zip` class is made to handle a single zip file.
 
 ## ZipManager usage
 
-The `\Comodojo\Zip\ZipManager` can handle multiple `\Comodojo\Zip\Zip` objects.
+The `\ZanySoft\Zip\ZipManager` can handle multiple `\ZanySoft\Zip\Zip` objects.
 
 ### Basic operations
 
@@ -162,14 +160,14 @@ The `\Comodojo\Zip\ZipManager` can handle multiple `\Comodojo\Zip\Zip` objects.
 
     ```php    
     // init manager
-    $manager = new \Comodojo\Zip\ZipManager();
+    $manager = new \ZanySoft\Zip\ZipManager();
 
     // register existing zips
-    $manager->addZip( \Comodojo\Zip\Zip::open('/path/to/my/file1.zip') )
-            ->addZip( \Comodojo\Zip\Zip::open('/path/to/my/file2.zip') );
+    $manager->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file1.zip') )
+            ->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file2.zip') );
 
     // register a new zip
-    $manager->addZip( \Comodojo\Zip\Zip::create('/path/to/my/file3.zip') );
+    $manager->addZip( \ZanySoft\Zip\Zip::create('/path/to/my/file3.zip') );
 
     ```
 
@@ -190,14 +188,14 @@ The `\Comodojo\Zip\ZipManager` can handle multiple `\Comodojo\Zip\Zip` objects.
 - Add files to all zips:
 
     ```php    
-    $manager-> = new \Comodojo\Zip\ZipManager();
+    $manager-> = new \ZanySoft\Zip\ZipManager();
 
     // register existing zips
-    $manager->addZip( \Comodojo\Zip\Zip::open('/path/to/my/file1.zip') )
-            ->addZip( \Comodojo\Zip\Zip::open('/path/to/my/file2.zip') );
+    $manager->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file1.zip') )
+            ->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file2.zip') );
 
     // register a new zip
-    $manager->addZip( \Comodojo\Zip\Zip::create('/path/to/my/file3.zip') );
+    $manager->addZip( \ZanySoft\Zip\Zip::create('/path/to/my/file3.zip') );
 
     ```
 
@@ -260,14 +258,10 @@ The `\Comodojo\Zip\ZipManager` can handle multiple `\Comodojo\Zip\Zip` objects.
 
     ```
 
-## Documentation
-
-- [API](https://api.comodojo.org/libs/Comodojo/Zip.html)
-
 ## Contributing
 
 Contributions are welcome and will be fully credited. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-`` comodojo/zip `` is released under the MIT License (MIT). Please see [License File](LICENSE) for more information.
+`` zanysoft/laravel-zip `` is released under the MIT License (MIT). Please see [License File](LICENSE) for more information.
