@@ -4,8 +4,6 @@
 
 This library was written to simplify and automate Zip files management using [PHP ZipArchive](http://php.net/manual/en/class.ziparchive.php).
 
-From version 2.0.0, it supports multiple Zip files (extract, add file, remove file, merge, ...) via `\ZanySoft\Zip\ZipManager` class.
-
 ### Installation
 Require this package in your composer.json and update composer. This will download the package.
 
