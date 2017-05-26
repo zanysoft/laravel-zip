@@ -6,36 +6,50 @@ This library was written to simplify and automate Zip files management using [PH
 
 From version 2.0.0, it supports multiple Zip files (extract, add file, remove file, merge, ...) via `\ZanySoft\Zip\ZipManager` class.
 
-## Installation
+### Installation
+Require this package in your composer.json and update composer. This will download the package.
 
-Install [composer](https://getcomposer.org/), then:
+    composer require zanysoft/cpanel-api
 
-`` composer require zanysoft/laravel-zip ``
+After updating composer, add the ServiceProvider to the providers array in config/app.php
+
+    ZanySoft\Cpanel\ZipServiceProvider::class,
+
+You can optionally use the facade for shorter code. Add this to your facades:
+
+    'Zip' => ZanySoft\Cpanel\ZipFacade::class,
+
 
 ## Zip usage
 
-The `\ZanySoft\Zip\Zip` class is made to handle a single zip file.
+use `ZanySoft\Zip\Zip` class only use `Zip` is made to handle a zip file.
+
+- include the Zip class at top:
+```php
+use Zip;
+
+```
 
 ### Basic operations
 
 - Open zip file:
 
     ```php    
-    $zip = \ZanySoft\Zip\Zip::open('file.zip');
+    $zip = Zip::open('file.zip');
 
     ```
 
 - Create zip file:
 
     ```php    
-    $zip = \ZanySoft\Zip\Zip::create('file.zip');
+    $zip = Zip::create('file.zip');
 
     ```
 
 - Check zip file:
 
     ```php    
-    $is_valid = \ZanySoft\Zip\Zip::check('file.zip');
+    $is_valid = Zip::check('file.zip');
 
     ```
 
@@ -152,7 +166,13 @@ The `\ZanySoft\Zip\Zip` class is made to handle a single zip file.
 
 ## ZipManager usage
 
-The `\ZanySoft\Zip\ZipManager` can handle multiple `\ZanySoft\Zip\Zip` objects.
+The `\ZanySoft\Zip\ZipManager` can handle multiple `ZanySoft\Zip\Zip` objects.
+
+- include the Zip and ZipManager class at top:
+```php
+use ZanySoft\Zip\ZipManager;
+use Zip;
+```
 
 ### Basic operations
 
@@ -160,14 +180,14 @@ The `\ZanySoft\Zip\ZipManager` can handle multiple `\ZanySoft\Zip\Zip` objects.
 
     ```php    
     // init manager
-    $manager = new \ZanySoft\Zip\ZipManager();
+    $manager = new ZipManager();
 
     // register existing zips
-    $manager->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file1.zip') )
-            ->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file2.zip') );
+    $manager->addZip( Zip::open('/path/to/my/file1.zip') )
+            ->addZip( Zip::open('/path/to/my/file2.zip') );
 
     // register a new zip
-    $manager->addZip( \ZanySoft\Zip\Zip::create('/path/to/my/file3.zip') );
+    $manager->addZip( Zip::create('/path/to/my/file3.zip') );
 
     ```
 
@@ -188,14 +208,14 @@ The `\ZanySoft\Zip\ZipManager` can handle multiple `\ZanySoft\Zip\Zip` objects.
 - Add files to all zips:
 
     ```php    
-    $manager-> = new \ZanySoft\Zip\ZipManager();
+    $manager-> = new ZipManager();
 
     // register existing zips
-    $manager->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file1.zip') )
-            ->addZip( \ZanySoft\Zip\Zip::open('/path/to/my/file2.zip') );
+    $manager->addZip( Zip::open('/path/to/my/file1.zip') )
+            ->addZip( Zip::open('/path/to/my/file2.zip') );
 
     // register a new zip
-    $manager->addZip( \ZanySoft\Zip\Zip::create('/path/to/my/file3.zip') );
+    $manager->addZip( Zip::create('/path/to/my/file3.zip') );
 
     ```
 
