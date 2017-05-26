@@ -1,6 +1,6 @@
 # zanysoft/laravel-zip
 
-ZipArchive toolbox
+> ZipArchive toolbox
 
 This library was written to simplify and automate Zip files management using [PHP ZipArchive](http://php.net/manual/en/class.ziparchive.php).
 
@@ -277,11 +277,3 @@ use Zip;
     $mask = $manager->getMask();
 
     ```
-
-## Contributing
-
-Contributions are welcome and will be fully credited. Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## License
-
-`` zanysoft/laravel-zip `` is released under the MIT License (MIT). Please see [License File](LICENSE) for more information.
