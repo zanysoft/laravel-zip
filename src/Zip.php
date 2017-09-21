@@ -381,7 +381,7 @@ class Zip {
      */
 	public function has($file, $flags = 0) {
 
-        if ( empty($destination) ) throw new Exception('Invalid File');
+        if ( empty($file) ) throw new Exception('Invalid File');
 
         return $this->zip_archive->locateName($file, $flags) !== false;
 
