@@ -398,7 +398,9 @@ class Zip {
 
         if ( !is_writable($destination) ) throw new Exception('Destination path not writable');
 
-        if ( is_array($files) && @sizeof($files) != 0 ) {
+		$files = is_array($files) ? $files : [$files];
+
+        if (@sizeof($files) != 0 ) {
 
             $file_matrix = $files;
 
