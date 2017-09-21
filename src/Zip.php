@@ -398,7 +398,7 @@ class Zip {
 
         if ( !is_writable($destination) ) throw new Exception('Destination path not writable');
 
-		$files = is_array($files) ? $files : [$files];
+        $files = is_array($files) ? $files : [$files];
 
         if (@sizeof($files) != 0 ) {
 
