@@ -398,7 +398,13 @@ class Zip {
 
         if ( !is_writable($destination) ) throw new Exception('Destination path not writable');
 
-        if ( is_array($files) && @sizeof($files) != 0 ) {
+        if (!is_array($files) && !is_string($files) && !is_null($files)) {
+            throw new Exception('Invalid extractable files');
+        }
+	    
+	$files = is_array($files) ? $files : is_string($files) ? [$files]: $files;
+
+        if (@sizeof($files) != 0 ) {
 
             $file_matrix = $files;
 
