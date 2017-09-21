@@ -371,7 +371,21 @@ class Zip {
         return $list;
 
     }
+    /**
+     * Check if zip archive has a file
+     *
+     * @param   string  $file    File
+     * @param   int     $flags   (optional) ZipArchive::FL_NOCASE, ZipArchive::FL_NODIR seperated by bitwise OR
+     *
+     * @return  bool
+     */
+	public function has($file, $flags = 0) {
 
+        if ( empty($destination) ) throw new Exception('Invalid File');
+
+        return $this->zip_archive->locateName($file, $flags) !== false;
+
+    }
     /**
      * Extract files from zip archive
      *
@@ -648,3 +662,4 @@ class Zip {
     }
 
 }
+
