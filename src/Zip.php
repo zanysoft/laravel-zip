@@ -402,16 +402,12 @@ class Zip {
             throw new Exception('Invalid extractable files');
         }
         
-		$files = is_array($files) ? $files : is_string($files) ? [$files]: $files;
+	$files = is_array($files) ? $files : is_string($files) ? [$files]: $files;
 
         if (@sizeof($files) != 0 ) {
-
             $file_matrix = $files;
-
         } else {
-
             $file_matrix = $this->getArchiveFiles();
-
         }
 
         if ( !empty($this->password) ) $this->zip_archive->setPassword($this->password);
