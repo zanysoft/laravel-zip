@@ -9,6 +9,16 @@
         "multiple",
         "merge"
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ZanySoft\\Zip\\ZipServiceProvider"
+            ],
+            "aliases": {
+                "Zip": "ZanySoft\\Zip\\ZipFacade"
+            }
+        }
+    },
     "homepage": "http://www.zanysoft.co",
     "authors": [
         {
