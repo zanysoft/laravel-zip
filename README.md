@@ -64,6 +64,23 @@ use Zip;
     $zip->extract('/path/to/uncompressed/files', array('file1','file2'));
 
     ```
+	
+- Check if zip has a file:
+
+    ```php    
+    // Check if archive has a file
+    $zip->has('/path/to/file/in/archive');
+
+    // Check if archive has a file case insensitively
+    $zip->has('/path/to/file/in/archive', ZipArchive::FL_NOCASE);
+
+    // Check if archive has a file ignoring directory component
+    $zip->has('file', ZipArchive::FL_NODIR);
+
+    // Check if archive has a file case insensitively ignoring directory component
+    $zip->has('file', ZipArchive::FL_NOCASE|ZipArchive::FL_NODIR);
+
+    ```
 
 - Add a file/directory to zip:
 
