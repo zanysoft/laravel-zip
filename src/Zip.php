@@ -39,7 +39,7 @@ class Zip {
     /**
      * ZipArchive internal pointer
      *
-     * @var object
+     * @var ZipArchive
      */
     private $zip_archive = null;
 
@@ -469,7 +469,7 @@ class Zip {
      *
      * @return  \ZanySoft\Zip\Zip
      */
-    public function add($file_name_or_array, $flatten_root_folder = false) {
+    public function add($file_name_or_array, $flatten_root_folder = false, $renameCallback = null) {
 
         if (empty($file_name_or_array)) {
             throw new Exception(self::getStatus(ZipArchive::ER_NOENT));
@@ -486,11 +486,11 @@ class Zip {
             if (is_array($file_name_or_array)) {
 
                 foreach ($file_name_or_array as $file_name) {
-                    $this->addItem($file_name, $flatten_root_folder);
+                    $this->addItem($file_name, $flatten_root_folder, null, $renameCallback);
                 }
 
             } else {
-                $this->addItem($file_name_or_array, $flatten_root_folder);
+                $this->addItem($file_name_or_array, $flatten_root_folder, null, $renameCallback);
             }
 
         } catch (Exception $ze) {
@@ -596,7 +596,7 @@ class Zip {
      * @param   string $base (optional) Base to record in zip file
      *
      */
-    private function addItem($file, $flatroot = false, $base = null) {
+    private function addItem($file, $flatroot = false, $base = null, $renameCallback = null) {
 
         $file = is_null($this->path) ? $file : $this->path . $file;
 
@@ -646,7 +646,7 @@ class Zip {
 
                 try {
 
-                    $this->addItem($file_real, false, $base);
+                    $this->addItem($file_real, false, $base, $renameCallback);
 
                 } catch (Exception $ze) {
 
@@ -658,7 +658,8 @@ class Zip {
 
         } else if (is_file($real_file)) {
 
-            $file_target = is_null($base) ? $real_name : $base . $real_name;
+            $archive_name = is_null($renameCallback) ? $real_name : $renameCallback($real_name);
+            $file_target = is_null($base) ? $archive_name : $base . $archive_name;
 
             $add_file = $this->zip_archive->addFile($real_file, $file_target);
 

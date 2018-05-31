@@ -95,6 +95,12 @@ use Zip;
 
     // add directory (only its content)
     $zip->add('/path/to/my/directory', true);
+    
+    // add directory and rename each files before adding them to archive
+    $zip->add('/path/to/my/directory', true, function(filename) {
+       return 'zipped-' . $filename;
+       // each file will be prededed by 'zipped-' in the archive 
+    });
 
     ```
 
