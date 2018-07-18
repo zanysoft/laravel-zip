@@ -16,11 +16,11 @@
         "laravel5",
         "zip",
         "unzip",
-        "extract"
+        "extract",
         "backup",
         "ZipArchive",
         "multiple",
-        "merge",
+        "merge"
     ],
     "extra": {
         "laravel": {
