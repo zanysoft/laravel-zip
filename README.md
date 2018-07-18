@@ -1,6 +1,6 @@
 # zanysoft/laravel-zip
 
-> ZipArchive toolbox
+> laravel-zip is the world's leading zip utility for file compression and backup.
 
 This library was written to simplify and automate Zip files management using [PHP ZipArchive](http://php.net/manual/en/class.ziparchive.php).
 
