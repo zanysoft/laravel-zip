@@ -1,13 +1,26 @@
 {
     "name": "zanysoft/laravel-zip",
-    "description": "ZipArchive toolbox",
+    "description": "laravel-zip is the world's leading zip utility for file compression and backup.",
     "license": "MIT",
+    "homepage": "http://www.zanysoft.co",
+    "authors": [
+        {
+            "name": "Zany Soft",
+            "email": "info@zanysoft.co",
+            "homepage": "http://www.zanysoft.co"
+        }
+    ],
     "keywords": [
+        "laravel-zip",
+        "laravel",
+        "laravel5",
         "zip",
         "unzip",
+        "extract"
+        "backup",
         "ZipArchive",
         "multiple",
-        "merge"
+        "merge",
     ],
     "extra": {
         "laravel": {
@@ -19,14 +32,6 @@
             }
         }
     },
-    "homepage": "http://www.zanysoft.co",
-    "authors": [
-        {
-            "name": "Zany Soft",
-            "email": "info@zanysoft.co",
-            "homepage": "http://www.zanysoft.co"
-        }
-    ],
     "autoload": {
         "psr-4": {
            "ZanySoft\\Zip\\": "src"
