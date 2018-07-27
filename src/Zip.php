@@ -39,7 +39,7 @@ class Zip {
     /**
      * ZipArchive internal pointer
      *
-     * @var object
+     * @var \ZipArchive
      */
     private $zip_archive = null;
 
@@ -96,6 +96,18 @@ class Zip {
         ZipArchive::ER_DELETED     => 'Entry has been deleted'
     );
 
+    /**
+     * First added index file
+     *
+     * @var int
+     */
+    private $file_added_index_start = 0;
+
+    /**
+     * Last added index file
+     * @var int
+     */
+    private $file_added_index_last = 0;
     /**
      * Class constructor
      *
@@ -485,12 +497,15 @@ class Zip {
 
             if (is_array($file_name_or_array)) {
 
+                $this->file_added_index_start = $this->file_added_index_last;
                 foreach ($file_name_or_array as $file_name) {
                     $this->addItem($file_name, $flatten_root_folder);
+                    $this->file_added_index_last++;
                 }
 
             } else {
                 $this->addItem($file_name_or_array, $flatten_root_folder);
+                $this->file_added_index_start = $this->file_added_index_last++;
             }
 
         } catch (Exception $ze) {
@@ -501,6 +516,24 @@ class Zip {
 
         return $this;
 
+    }
+
+    /**
+     * Set Compression Method for latest added files
+     *
+     * @param int $method
+     * @return $this
+     * @throws \Exception
+     */
+    public function setCompression($method = \ZipArchive::CM_DEFAULT){
+        for($i=$this->file_added_index_start; $i<$this->file_added_index_last;$i++) {
+            $res = $this->zip_archive->setCompressionIndex ($i, $method);
+            if( $res === false){
+                throw new \Exception("Can not set method for index [$i]");
+            }
+        }
+
+        return $this;
     }
 
     /**
