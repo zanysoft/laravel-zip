@@ -37,6 +37,11 @@
            "ZanySoft\\Zip\\": "src"
          }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ZanySoft\\Zip\\": "tests"
+        }
+    },
     "require": {
         "php": ">=5.6.0"
     },
