@@ -200,11 +200,11 @@ class ZipManager {
 
             foreach ( $this->zip_archives as $archive ) {
 
-                $local_path = substr($destination, -1) == '/' ? $destination : $destination.'/';
+                $local_path = (substr($destination, -1) == '/' ? $destination : $destination.'/');
 
                 $local_file = pathinfo($archive->getZipFile());
 
-                $local_destination = $separate ? ($local_path.$local_file['filename']) : $destination;
+                $local_destination = ($separate ? ($local_path.$local_file['filename']) : $destination);
 
                 $archive->extract($local_destination, $files = null);
 
