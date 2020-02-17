@@ -482,15 +482,9 @@ class Zip {
         ));
 
         try {
-
-            if (is_array($file_name_or_array)) {
-
-                foreach ($file_name_or_array as $file_name) {
-                    $this->addItem($file_name, $flatten_root_folder);
-                }
-
-            } else {
-                $this->addItem($file_name_or_array, $flatten_root_folder);
+            
+            foreach ( $file_name_or_array as $file_target => $file_name ) {
+                $this->addItem($file_name, $file_target, $flatten_root_folder);
             }
 
         } catch (Exception $ze) {
@@ -596,8 +590,7 @@ class Zip {
      * @param   string $base (optional) Base to record in zip file
      *
      */
-    private function addItem($file, $flatroot = false, $base = null) {
-
+    private function addItem($file, $file_target = null, $flatroot = false, $base = null) {
         $file = is_null($this->path) ? $file : $this->path . $file;
 
         $real_file = str_replace('\\', '/', realpath($file));
@@ -646,7 +639,7 @@ class Zip {
 
                 try {
 
-                    $this->addItem($file_real, false, $base);
+                    $this->addItem($file_real, $file_target, false, $base);
 
                 } catch (Exception $ze) {
 
@@ -658,7 +651,9 @@ class Zip {
 
         } else if (is_file($real_file)) {
 
-            $file_target = is_null($base) ? $real_name : $base . $real_name;
+            if (is_null($file_target)) {
+                $file_target = is_null($base) ? $real_name : $base.$real_name;
+            }
 
             $add_file = $this->zip_archive->addFile($real_file, $file_target);
 
