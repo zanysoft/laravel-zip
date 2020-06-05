@@ -25,7 +25,7 @@ class Zip {
     /**
      * Supported skip modes
      *
-     * @var bool
+     * @var array
      */
     private $supported_skip_modes = array("HIDDEN", "ZANYSOFT", "ALL", "NONE");
 
