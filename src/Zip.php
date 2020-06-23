@@ -269,7 +269,7 @@ class Zip {
             throw new Exception("Not existent path");
         }
 
-        $this->path = $path[strlen($path) - 1] == "/" ? $path : $path . "/";
+        $this->path = ($path[strlen($path) - 1] == "/" ? $path : $path . "/");
 
         return $this;
 
@@ -598,7 +598,7 @@ class Zip {
      */
     private function addItem($file, $flatroot = false, $base = null) {
 
-        $file = is_null($this->path) ? $file : $this->path . $file;
+        $file = (is_null($this->path) ? $file : $this->path . $file);
 
         $real_file = str_replace('\\', '/', realpath($file));
 
@@ -620,7 +620,7 @@ class Zip {
 
             if (!$flatroot) {
 
-                $folder_target = is_null($base) ? $real_name : $base . $real_name;
+                $folder_target = (is_null($base) ? $real_name : $base . $real_name);
 
                 $new_folder = $this->zip_archive->addEmptyDir($folder_target);
 
@@ -642,7 +642,7 @@ class Zip {
 
                 $file_real = $path->getPathname();
 
-                $base = is_null($folder_target) ? null : ($folder_target . "/");
+                $base = (is_null($folder_target) ? null : ($folder_target . "/"));
 
                 try {
 
@@ -658,7 +658,7 @@ class Zip {
 
         } else if (is_file($real_file)) {
 
-            $file_target = is_null($base) ? $real_name : $base . $real_name;
+            $file_target = (is_null($base) ? $real_name : $base . $real_name);
 
             $add_file = $this->zip_archive->addFile($real_file, $file_target);
 
