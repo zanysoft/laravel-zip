@@ -1,5 +1,12 @@
 # zanysoft/laravel-zip
 
+
+[![GitHub issues](https://img.shields.io/github/issues/ZanySoft/laravel-zip)](https://github.com/zanysoft/laravel-zip/issues)
+[![GitHub license](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/zanysoft/laravel-zip/blob/master/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-informational.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![GitHub tag](https://img.shields.io/github/tag/ZanySoft/laravel-zip.svg?style=flat&logo=laravel&color=informational)](https://github.com/zanysoft/laravel-zip/tags)
+
+
 > laravel-zip is the world's leading zip utility for file compression and backup.
 
 This library was written to simplify and automate Zip files management using [PHP ZipArchive](http://php.net/manual/en/class.ziparchive.php).
