@@ -1,7 +1,7 @@
 # zanysoft/laravel-zip
 
-
-[![GitHub issues](https://img.shields.io/github/issues/ZanySoft/laravel-zip)](https://github.com/zanysoft/laravel-zip/issues)
+[![Latest Stable Version](https://poser.pugx.org/zanysoft/laravel-zip/v/stable.png)](https://packagist.org/packages/zanysoft/laravel-zip) [![Total Downloads]
+[![Downloads](https://img.shields.io/packagist/dt/zanysoft/laravel-zip.svg?style=flat-square)](https://packagist.org/packages/zanysoft/laravel-zip)
 [![GitHub license](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/zanysoft/laravel-zip/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-informational.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![GitHub tag](https://img.shields.io/github/tag/ZanySoft/laravel-zip.svg?style=flat&logo=laravel&color=informational)](https://github.com/zanysoft/laravel-zip/tags)
