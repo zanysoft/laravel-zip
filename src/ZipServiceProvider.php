@@ -4,15 +4,15 @@ namespace ZanySoft\Zip;
 
 use Illuminate\Support\ServiceProvider;
 
-class ZipServiceProvider extends ServiceProvider {
-
-
+class ZipServiceProvider extends ServiceProvider
+{
     /**
      * Register the service provider.
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         $this->registerCpanelService();
 
         /*if ($this->app->runningInConsole()) {
@@ -25,7 +25,8 @@ class ZipServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function registerCpanelService() {
+    public function registerCpanelService()
+    {
         $this->app->singleton('zip', function ($app) {
             return new Zip($app);
         });
@@ -54,7 +55,4 @@ class ZipServiceProvider extends ServiceProvider {
     {
         return str_contains($this->app->version(), 'Lumen') === true;
     }
-
 }
-
-?>

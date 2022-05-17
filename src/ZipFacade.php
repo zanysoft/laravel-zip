@@ -1,4 +1,5 @@
 <?php
+
 namespace ZanySoft\Zip;
 
 use Illuminate\Support\Facades\Facade;
