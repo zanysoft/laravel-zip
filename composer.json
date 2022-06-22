@@ -1,12 +1,12 @@
 {
-  "name": "zanysoft/laravel-zip",
+  "name": "nabeeljavaid/laravel-zip",
   "description": "laravel-zip is the world's leading zip utility for file compression and backup.",
   "license": "MIT",
   "homepage": "http://www.zanysoft.net",
   "authors": [
     {
-      "name": "Zany Soft",
-      "email": "info@zanysoft.net",
+      "name": "Nabeel Javaid",
+      "email": "nabeeljavaid.nmj@gmail.com",
       "homepage": "http://www.zanysoft.net"
     }
   ],

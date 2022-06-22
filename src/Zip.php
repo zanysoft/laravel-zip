@@ -110,8 +110,11 @@ class Zip
         if (empty($zip_file)) {
             throw new \Exception(self::getStatus(ZipArchive::ER_NOENT));
         }
-
-        $this->zip_file = $zip_file;
+        
+	if(is_string($zip_file) == true) {
+	    $this->zip_file = $zip_file;
+	}
+        
     }
 
     /**
