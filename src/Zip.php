@@ -629,7 +629,7 @@ class Zip
      *
      * @return  \ZipArchive
      */
-    private static function openZipFile($zip_file, $flags = null)
+    private static function openZipFile($zip_file, int $flags = 0)
     {
         $zip = new ZipArchive();
 
