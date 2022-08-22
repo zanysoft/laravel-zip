@@ -2,8 +2,8 @@
 
 namespace ZanySoft\Zip;
 
-use \ZipArchive;
-use \Exception;
+use Exception;
+use ZipArchive;
 
 /**
  * ZanySoft\Zip - ZipArchive toolbox
@@ -633,7 +633,12 @@ class Zip
     {
         $zip = new ZipArchive();
 
-        $open = $zip->open($zip_file, $flags);
+        if (is_null($flags)) {
+            $open = $zip->open($zip_file);
+        } else {
+            $open = $zip->open($zip_file, $flags);
+        }
+
 
         if ($open !== true) {
             throw new \Exception(self::getStatus($open));
