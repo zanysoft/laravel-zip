@@ -13,7 +13,9 @@
   "keywords": [
     "laravel-zip",
     "laravel",
-    "laravel5",
+    "laravel 6",
+    "laravel 7",
+    "laravel 8",
     "zip",
     "unzip",
     "extract",
@@ -24,11 +26,22 @@
   ],
   "require": {
     "php": ">=7.1",
-    "illuminate/support": "^6.0|^7.0|^8.0"
+    "illuminate/support": "^6.0|^7.0|^8.0",
+    "ext-zip": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "scrutinizer/ocular": "^1.9",
+    "orchestra/testbench": "^6.24"
   },
   "autoload": {
     "psr-4": {
       "ZanySoft\\Zip\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ZanySoft\\Zip\\": "tests"
     }
   },
   "extra": {
