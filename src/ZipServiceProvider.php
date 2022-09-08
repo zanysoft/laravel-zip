@@ -13,7 +13,7 @@ class ZipServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCpanelService();
+        $this->registerZipService();
 
         /*if ($this->app->runningInConsole()) {
             $this->registerResources();
@@ -25,10 +25,10 @@ class ZipServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerCpanelService()
+    public function registerZipService()
     {
-        $this->app->singleton('zip', function ($app) {
-            return new Zip($app);
+        $this->app->singleton('zip', function ($app, $parameters) {
+            return new Zip($parameters[0]);
         });
     }
 
