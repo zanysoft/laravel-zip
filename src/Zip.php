@@ -3,6 +3,7 @@
 namespace ZanySoft\Zip;
 
 use Exception;
+use Illuminate\Support\Str;
 use ZipArchive;
 
 /**
@@ -42,7 +43,7 @@ class Zip
     /**
      * ZipArchive internal pointer
      *
-     * @var object
+     * @var \ZipArchive
      */
     private $zip_archive = null;
 
@@ -105,13 +106,11 @@ class Zip
      * @param string $zip_file ZIP file name
      *
      */
-    public function __construct($zip_file)
+    public function __construct($zip_file = null)
     {
-        if (empty($zip_file)) {
-            throw new \Exception(self::getStatus(ZipArchive::ER_NOENT));
+        if ($zip_file) {
+            $this->open($zip_file);
         }
-
-        $this->zip_file = $zip_file;
     }
 
     /**
@@ -121,17 +120,15 @@ class Zip
      *
      * @return  Zip
      */
-    public static function open($zip_file)
+    public function open(string $zip_file)
     {
         try {
-            $zip = new Zip($zip_file);
-
-            $zip->setArchive(self::openZipFile($zip_file));
+            $this->setArchive(self::openZipFile($zip_file));
         } catch (\Exception $ze) {
             throw $ze;
         }
 
-        return $zip;
+        return $this;
     }
 
     /**
@@ -141,14 +138,14 @@ class Zip
      *
      * @return  bool
      */
-    public static function check($zip_file)
+    public function check($zip_file): bool
     {
         try {
             $zip = self::openZipFile($zip_file, ZipArchive::CHECKCONS);
 
             $zip->close();
         } catch (Exception $ze) {
-            throw $ze;
+            return false;
         }
 
         return true;
@@ -162,8 +159,12 @@ class Zip
      *
      * @return  Zip
      */
-    public static function create($zip_file, $overwrite = false)
+    public function create(string $zip_file, bool $overwrite = false)
     {
+        if ($overwrite and !$this->check($zip_file)) {
+            $overwrite = false;
+        }
+
         $overwrite = filter_var($overwrite, FILTER_VALIDATE_BOOLEAN, [
             'options' => [
                 'default' => false
@@ -171,18 +172,16 @@ class Zip
         ]);
 
         try {
-            $zip = new Zip($zip_file);
-
             if ($overwrite) {
-                $zip->setArchive(self::openZipFile($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE));
+                $this->setArchive(self::openZipFile($zip_file, ZipArchive::OVERWRITE));
             } else {
-                $zip->setArchive(self::openZipFile($zip_file, ZipArchive::CREATE));
+                $this->setArchive(self::openZipFile($zip_file, ZipArchive::CREATE));
             }
         } catch (Exception $ze) {
             throw $ze;
         }
 
-        return $zip;
+        return $this;
     }
 
     /**
@@ -246,13 +245,15 @@ class Zip
      *
      * @return  Zip
      */
-    final public function setPath($path)
+    public function setPath(string $path)
     {
+        $path = rtrim(str_replace('\\', '/', $path), '/') . '/';
+
         if (!file_exists($path)) {
             throw new Exception('Not existent path');
         }
 
-        $this->path = $path[strlen($path) - 1] == '/' ? $path : $path . '/';
+        $this->path = $path;
 
         return $this;
     }
@@ -430,32 +431,44 @@ class Zip
     }
 
     /**
+     * Create file form content and add to zip archive
+     *
+     * @param string $name File name with extension
+     * @param string $string File content
+     * @return void
+     */
+    public function addFromString(string $name, string $string)
+    {
+        $this->zip_archive->addFromString($name, $string);
+    }
+
+    /**
      * Add files to zip archive
      *
-     * @param mixed $file_name_or_array filename to add or an array of filenames
-     * @param bool $flatten_root_folder in case of directory, specify if root folder should be flatten or not
+     * @param mixed $file_path file path to add or an array of files path
+     * @param bool $flatroot in case of directory, specify if root folder should be flatten or not
      *
      * @return  Zip
      */
-    public function add($file_name_or_array, $flatten_root_folder = false)
+    public function add($file_path, $flatroot = false)
     {
-        if (empty($file_name_or_array)) {
+        if (empty($file_path)) {
             throw new Exception(self::getStatus(ZipArchive::ER_NOENT));
         }
 
-        $flatten_root_folder = filter_var($flatten_root_folder, FILTER_VALIDATE_BOOLEAN, [
+        $flatroot = filter_var($flatroot, FILTER_VALIDATE_BOOLEAN, [
             'options' => [
                 'default' => false
             ]
         ]);
 
         try {
-            if (is_array($file_name_or_array)) {
-                foreach ($file_name_or_array as $file_name) {
-                    $this->addItem($file_name, $flatten_root_folder);
+            if (is_array($file_path)) {
+                foreach ($file_path as $file) {
+                    $this->addItem($file, $flatroot);
                 }
             } else {
-                $this->addItem($file_name_or_array, $flatten_root_folder);
+                $this->addItem($file_path, $flatroot);
             }
         } catch (Exception $ze) {
             throw $ze;
@@ -467,23 +480,23 @@ class Zip
     /**
      * Delete files from zip archive
      *
-     * @param mixed $file_name_or_array filename to delete or an array of filenames
+     * @param mixed $filename filename to delete or an array of filenames
      *
      * @return  Zip
      */
-    public function delete($file_name_or_array)
+    public function delete($filename)
     {
-        if (empty($file_name_or_array)) {
+        if (empty($filename)) {
             throw new Exception(self::getStatus(ZipArchive::ER_NOENT));
         }
 
         try {
-            if (is_array($file_name_or_array)) {
-                foreach ($file_name_or_array as $file_name) {
+            if (is_array($filename)) {
+                foreach ($filename as $file_name) {
                     $this->deleteItem($file_name);
                 }
             } else {
-                $this->deleteItem($file_name_or_array);
+                $this->deleteItem($filename);
             }
         } catch (Exception $ze) {
             throw $ze;
@@ -549,7 +562,11 @@ class Zip
      */
     private function addItem(string $file, bool $flatroot = false, string $base = null): void
     {
-        $file = is_null($this->path) ? $file : $this->path . $file;
+        //$file = is_null($this->path) ? $file : $this->path . $file;
+
+        if ($this->path && !Str::startsWith($file, $this->path)) {
+            $file = $this->path . $file;
+        }
 
         $real_file = str_replace('\\', '/', realpath($file));
 

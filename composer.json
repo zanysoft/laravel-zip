@@ -24,8 +24,8 @@
     "merge"
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
-    "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+    "php": ">=7.4",
+    "illuminate/support": "^7.0|^8.0|^9.0",
     "ext-zip": "*"
   },
   "require-dev": {
@@ -49,7 +49,7 @@
         "ZanySoft\\Zip\\ZipServiceProvider"
       ],
       "aliases": {
-        "Zip": "ZanySoft\\Zip\\ZipFacade"
+        "Zip": "ZanySoft\\Zip\\Facades\\Zip"
       }
     }
   }

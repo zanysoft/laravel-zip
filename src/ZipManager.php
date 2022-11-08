@@ -2,8 +2,7 @@
 
 namespace ZanySoft\Zip;
 
-use \ZanySoft\Zip\Zip;
-use \Exception;
+use Exception;
 
 /**
  * Multiple ZipArchive manager
@@ -227,7 +226,7 @@ class ZipManager
         try {
             $this->extract($temporary_folder, $separate, null);
 
-            $zip = Zip::create($output_zip_file);
+            $zip = \ZanySoft\Zip\Facades\Zip::create($output_zip_file);
 
             $zip->add($temporary_folder, true)->close();
 

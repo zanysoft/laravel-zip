@@ -5,7 +5,7 @@ namespace ZanySoft\Zip\Tests;
 
 
 use Orchestra\Testbench\TestCase;
-use ZanySoft\Zip\Zip;
+use ZanySoft\Zip\Facades\Zip;
 
 class ZipTest extends TestCase
 {

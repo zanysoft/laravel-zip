@@ -104,6 +104,18 @@ use Zip;
 
     ```
 
+- Add content to zip:
+
+    ```php    
+    $zip->addFromString('file name with extension', 'content of file');
+  
+    $zip->addFromString('filename.txt', $file_content);
+    $zip->addFromString('folder/file1.txt', $file_content);
+    $zip->addFromString('folder/file2.txt', $file_content);
+
+
+    ```
+
 - Add multiple files/directories to zip:
 
     ```php    

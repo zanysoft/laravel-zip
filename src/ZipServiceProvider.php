@@ -13,11 +13,7 @@ class ZipServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCpanelService();
-
-        /*if ($this->app->runningInConsole()) {
-            $this->registerResources();
-        }*/
+        $this->registerZipService();
     }
 
     /**
@@ -25,34 +21,10 @@ class ZipServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerCpanelService()
+    public function registerZipService()
     {
-        $this->app->singleton('zip', function ($app) {
-            return new Zip($app);
+        $this->app->singleton('zanysoft.zip', function ($app) {
+            return new Zip();
         });
-    }
-
-    /**
-     * Register currency resources.
-     *
-     * @return void
-     */
-    public function registerResources()
-    {
-        if ($this->isLumen() === false) {
-            $this->publishes([
-                __DIR__ . '/../config/zip.php' => config_path('zip.php'),
-            ], 'config');
-        }
-    }
-
-    /**
-     * Check if package is running under Lumen app
-     *
-     * @return bool
-     */
-    protected function isLumen()
-    {
-        return str_contains($this->app->version(), 'Lumen') === true;
     }
 }
