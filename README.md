@@ -245,7 +245,7 @@ use Zip;
 - Add files to all zips:
 
     ```php    
-    $manager-> = new ZipManager();
+    $manager = new ZipManager();
 
     // register existing zips
     $manager->addZip( Zip::open('/path/to/my/file1.zip') )
