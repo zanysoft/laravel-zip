@@ -1,6 +1,6 @@
 # zanysoft/laravel-zip
 
-<a href="https://www.buymeacoffee.com/zanysoft" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffe&emoji='☕'&slug=zanysoft&button_colour=5F7FFF&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
+<a href="https://www.buymeacoffee.com/zanysoft" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=zanysoft&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
 
 [![Downloads](https://img.shields.io/packagist/dt/zanysoft/laravel-zip.svg?style=flat-square)](https://packagist.org/packages/zanysoft/laravel-zip)
 [![GitHub license](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/zanysoft/laravel-zip/blob/master/LICENSE)
@@ -245,7 +245,7 @@ use Zip;
 - Add files to all zips:
 
     ```php    
-    $manager-> = new ZipManager();
+    $manager = new ZipManager();
 
     // register existing zips
     $manager->addZip( Zip::open('/path/to/my/file1.zip') )
