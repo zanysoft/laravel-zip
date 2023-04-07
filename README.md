@@ -25,7 +25,7 @@ After updating composer, add the ServiceProvider to the providers array in confi
 
 You can optionally use the facade for shorter code. Add this to your facades:
 
-    'Zip' => ZanySoft\Zip\ZipFacade::class,
+    'Zip' => ZanySoft\Zip\Facades\Zip::class,
 
 
 ## Zip usage
