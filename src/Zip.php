@@ -69,6 +69,13 @@ class Zip
     private ?string $path = null;
 
     /**
+     * Current temporary file path
+     *
+     * @var string|null
+     */
+    private ?string $temporaryFilePath = null;
+
+    /**
      * Array of well known zip status codes
      *
      * @var array
@@ -185,6 +192,23 @@ class Zip
     }
 
     /**
+     * Create a new zip archive as temporary file
+     *
+     * @return  Zip
+     */
+    public function createTemporary()
+    {
+        try {
+            $this->temporaryFilePath = stream_get_meta_data(tmpfile())['uri'];
+            $this->setArchive(self::openZipFile($this->temporaryFilePath, ZipArchive::CREATE));
+        } catch (Exception $ze) {
+            throw $ze;
+        }
+
+        return $this;
+    }
+
+    /**
      * Set files to skip
      *
      * @param string $mode [HIDDEN, ZANYSOFT, ALL, NONE]
@@ -266,6 +290,16 @@ class Zip
     final public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * Get temporary file path
+     *
+     * @return  string
+     */
+    final public function getTemporaryFilePath()
+    {
+        return $this->temporaryFilePath;
     }
 
     /**
@@ -517,6 +551,20 @@ class Zip
         }
 
         return true;
+    }
+
+    /**
+     * Close the zip archive
+     *
+     * @return  string
+     */
+    public function closeTemporary()
+    {
+        if ($this->zip_archive->close() === false) {
+            throw new Exception(self::getStatus($this->zip_archive->status));
+        }
+
+        return $this->getTemporaryFilePath();
     }
 
     /**
