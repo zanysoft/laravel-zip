@@ -6,6 +6,7 @@ namespace ZanySoft\Zip\Tests;
 
 use Orchestra\Testbench\TestCase;
 use ZanySoft\Zip\Facades\Zip;
+use ZanySoft\Zip\ZipServiceProvider;
 
 class ZipTest extends TestCase
 {
@@ -16,6 +17,11 @@ class ZipTest extends TestCase
         parent::setUp();
 
         $this->testFilePath = __DIR__ . '/TestFiles';
+    }
+    
+    protected function getPackageProviders($app)
+    {
+        return [ZipServiceProvider::class];
     }
 
     public function tearDown(): void
