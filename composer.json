@@ -6,6 +6,8 @@
     "laravel",
     "laravel8",
     "laravel9",
+    "laravel10",
+    "laravel11",
     "zip",
     "unzip",
     "extract",
@@ -26,7 +28,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+    "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0",
     "ext-zip": "*"
   },
   "require-dev": {
