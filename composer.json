@@ -22,8 +22,7 @@
     }
   ],
   "support": {
-      "email": "serguei.medvedev@yandex.ru",
-      "issues": "https://github.com/sergeimedvedev/laravel-zip/issues"
+      "email": "serguei.medvedev@yandex.ru"
   },
   "require": {
     "php": "^7.3|^8.0",
