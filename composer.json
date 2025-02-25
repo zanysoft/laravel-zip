@@ -1,6 +1,6 @@
 {
   "name": "zanysoft/laravel-zip",
-  "description": "laravel-zip is the world's leading zip utility for file compression and backup.",
+  "description": "Zip and Unzip files and directories with Laravel",
   "keywords": [
     "laravel-zip",
     "laravel",
@@ -17,12 +17,13 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Zany Soft",
-      "email": "zanysoft@outlook.com",
+      "name": "Sergei Medvedev",
+      "email": "serguei.medvedev@yandex.ru"
     }
   ],
   "support": {
-      "email": "zanysoft@outlook.com"
+      "email": "serguei.medvedev@yandex.ru",
+      "issues": "https://github.com/sergeimedvedev/laravel-zip/issues"
   },
   "require": {
     "php": ">=7.4",
