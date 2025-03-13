@@ -18,11 +18,11 @@
   "authors": [
     {
       "name": "Zany Soft",
-      "email": "zanysoft@outlook.com",
+      "email": "zanysoft@outlook.com"
     }
   ],
   "support": {
-      "email": "zanysoft@outlook.com"
+    "email": "zanysoft@outlook.com"
   },
   "require": {
     "php": ">=8.1",
