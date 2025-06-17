@@ -560,7 +560,7 @@ class Zip
      *
      * @throws Exception
      */
-    private function addItem(string $file, bool $flatroot = false, string $base = null): void
+    private function addItem(string $file, bool $flatroot = false, ?string $base = null): void
     {
         //$file = is_null($this->path) ? $file : $this->path . $file;
 
